@@ -63,49 +63,45 @@ export default function Navbar({
             cursor: 'pointer',
             userSelect: 'none'
           }}
+          title="fableSTEAM - Home"
         >
-          {/* Purple rounded brand icon */}
+          {/* Official fableSTEAM Logo Container */}
           <div style={{
-            width: '40px',
-            height: '40px',
-            borderRadius: '12px',
-            background: 'linear-gradient(135deg, #6366f1, #4f46e5)',
             display: 'flex',
             alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-            boxShadow: '0 4px 12px rgba(99, 102, 241, 0.3)'
+            background: '#05070f',
+            borderRadius: '12px',
+            padding: '3px 10px 3px 6px',
+            border: '1px solid #1e293b',
+            boxShadow: '0 3px 12px rgba(0, 0, 0, 0.15)',
+            transition: 'transform 0.15s ease'
           }}>
-            <BookOpen size={22} />
+            <img 
+              src="/logo-horizontal.png" 
+              alt="fableSTEAM" 
+              style={{
+                height: '38px',
+                width: 'auto',
+                display: 'block'
+              }} 
+            />
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-            <span style={{
-              fontSize: '1.45rem',
-              fontWeight: 900,
-              letterSpacing: '-0.02em',
-              color: '#0f172a',
-              fontFamily: 'var(--font-heading)'
-            }}>
-              FableSTEM
-            </span>
-
-            {/* ✨ STEM Badge */}
-            <span style={{
-              background: '#fef3c7',
-              color: '#b45309',
-              border: '1px solid #fde68a',
-              fontSize: '0.72rem',
-              fontWeight: 800,
-              padding: '2px 8px',
-              borderRadius: '999px',
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '3px'
-            }}>
-              <Sparkles size={11} color="#d97706" /> STEM
-            </span>
-          </div>
+          {/* ✨ STEAM Badge */}
+          <span style={{
+            background: '#fef3c7',
+            color: '#b45309',
+            border: '1px solid #fde68a',
+            fontSize: '0.72rem',
+            fontWeight: 800,
+            padding: '2px 8px',
+            borderRadius: '999px',
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '3px'
+          }}>
+            <Sparkles size={11} color="#d97706" /> STEAM
+          </span>
         </div>
 
         {/* Top Right Actions */}

@@ -6,25 +6,24 @@ export default function Footer({ onScrollToHowItWorks }) {
     <footer className="footer">
       <div className="app-container">
         <div className="footer-inner">
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.65rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }}>
             <div style={{
-              width: '32px',
-              height: '32px',
+              background: '#090d16',
               borderRadius: '8px',
-              background: 'linear-gradient(135deg, var(--primary), var(--secondary))',
+              padding: '2px 6px',
+              border: '1px solid #1e293b',
               display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              color: 'white'
+              alignItems: 'center'
             }}>
-              <BookOpen size={16} />
+              <img 
+                src="/logo-horizontal.png" 
+                alt="fableSTEAM" 
+                style={{ height: '28px', width: 'auto', display: 'block' }} 
+              />
             </div>
             <div>
-              <div style={{ fontWeight: 800, color: '#1e1b4b', fontSize: '1rem' }}>
-                Fable<span style={{ color: '#4f46e5' }}>STEM</span>
-              </div>
               <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>
-                Learn STEM through stories. Deepen curiosity through books & discovery.
+                Learn STEAM through stories. Deepen curiosity through books & discovery.
               </div>
             </div>
           </div>
