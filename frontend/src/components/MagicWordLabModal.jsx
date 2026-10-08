@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
-  X, Volume2, Sparkles, Lightbulb, Zap, Award, CheckCircle, 
-  HelpCircle, ArrowRight, RotateCcw, Smile
+  X, Volume2, Sparkles, Lightbulb, Zap, CheckCircle, Smile
 } from 'lucide-react';
-import { playClickSound, playSuccessChime, playFanfareSound } from '../services/soundEffects';
+import { playClickSound, playSuccessChime } from '../services/soundEffects';
 
 // Phonics syllable breakdown generator
 function getSyllables(word) {
@@ -114,12 +113,14 @@ export default function MagicWordLabModal({
     }
   };
 
-  // Generate mini quiz options
-  const quizOptions = [
-    { text: meaning, correct: true },
-    { text: `Something that has nothing to do with ${word}`, correct: false },
-    { text: `A type of giant blueberry from Jupiter`, correct: false }
-  ].sort(() => 0.5 - Math.random());
+  // Generate mini quiz options safely with useMemo
+  const quizOptions = useMemo(() => {
+    return [
+      { text: meaning, correct: true },
+      { text: `Something that has nothing to do with ${word}`, correct: false },
+      { text: `A type of giant blueberry from Jupiter`, correct: false }
+    ].sort(() => 0.5 - Math.random());
+  }, [word, meaning]);
 
   return (
     <div className="modal-backdrop" onClick={onClose} role="dialog" aria-modal="true">

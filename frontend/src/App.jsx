@@ -52,7 +52,6 @@ export default function App() {
   const [currentTopic, setCurrentTopic] = useState("");
   const [currentAgeGroup, setCurrentAgeGroup] = useState("5-7");
   const [currentLanguage, setCurrentLanguage] = useState("English");
-  const [currentLength, setCurrentLength] = useState("medium");
 
   // AI Content
   const [storyData, setStoryData] = useState(null);
@@ -154,7 +153,6 @@ export default function App() {
     setCurrentTopic(topic);
     setCurrentAgeGroup(age_group);
     setCurrentLanguage(language);
-    setCurrentLength(length);
     setCurrentStep(STEP_LOADING_STORY);
 
     try {

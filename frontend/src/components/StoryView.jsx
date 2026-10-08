@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { 
-  Volume2, VolumeX, Pause, Play, BookOpen, Sparkles, 
+  Volume2, VolumeX, Pause, Play, BookOpen, 
   Printer, Copy, Check, ArrowRight, ArrowLeft, Lightbulb, Clock, Globe,
-  GraduationCap, Eye, Type, Compass
+  GraduationCap
 } from 'lucide-react';
 import SceneIllustrator from './SceneIllustrator';
 import CharacterBuddyChat from './CharacterBuddyChat';
@@ -10,7 +10,7 @@ import VocabularyFlashcards from './VocabularyFlashcards';
 import StoryBranchingCard from './StoryBranchingCard';
 import StoryDoodleCanvas from './StoryDoodleCanvas';
 import SuggestedResourcesCard from './SuggestedResourcesCard';
-import { playClickSound, playOptionSelect } from '../services/soundEffects';
+import { playClickSound } from '../services/soundEffects';
 import { playAmbientSound, stopAmbientSound } from '../services/ambientSoundscapes';
 
 export default function StoryView({ 
@@ -37,12 +37,11 @@ export default function StoryView({
   const [showReadingRuler, setShowReadingRuler] = useState(false);
   const [rulerY, setRulerY] = useState(200);
   const [fontSizeOffset, setFontSizeOffset] = useState(0); // -2, 0, +3, +6
-  const [showParallelLang, setShowParallelLang] = useState(false);
 
   // Adventure Branching
   const [branchText, setBranchText] = useState("");
 
-  const { title, story, reading_level, vocabulary = [], moral, emoji_scenes = [] } = storyData || {};
+  const { title, story, reading_level, vocabulary = [], moral } = storyData || {};
 
   // Estimated reading time calculation
   const wordCount = story ? story.trim().split(/\s+/).length : 0;
