@@ -28,7 +28,7 @@ async function request(path, options = {}) {
 }
 
 export async function checkHealth() {
-  return request("/health");
+  return request("/api/health");
 }
 
 export async function getStory({ topic, age_group, language = "English", length = "medium" }) {

@@ -201,6 +201,7 @@ class SaveQuizRequest(BaseModel):
 # Endpoints
 # ==========================================
 @app.get("/health")
+@app.get("/api/health")
 def health_check():
     import database
     return {
