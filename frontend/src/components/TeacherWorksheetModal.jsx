@@ -6,6 +6,25 @@ export default function TeacherWorksheetModal({ storyData, topic, ageGroup, quiz
 
   const { title, story, reading_level, vocabulary = [], moral } = storyData || {};
 
+  const safeTopic = topic || "The Water Cycle";
+  const safeAgeGroup = ageGroup || "8-10";
+  const safeTitle = title || `${safeTopic}: Classroom Lesson & Reading Passage`;
+  const safeStory = story || (
+    "Water moves in an endless natural cycle across Earth. Powered by solar thermal energy, liquid water evaporates from oceans and lakes into buoyant vapor. As vapor rises into the cool atmosphere, it condenses into clouds before precipitating back to land as rain, replenishing soils, vegetation, and subterranean aquifers."
+  );
+  const safeReadingLevel = reading_level || "Elementary Explorer (Grade 3-4)";
+  const safeVocabulary = (vocabulary && vocabulary.length > 0) ? vocabulary : [
+    { word: "Evaporation", meaning: "Liquid water heating into rising gas vapor" },
+    { word: "Condensation", meaning: "Cooling vapor gathering into cloud droplets" },
+    { word: "Precipitation", meaning: "Rain, snow, or hail returning to Earth" }
+  ];
+  const safeMoral = moral || "Every drop of water on Earth is continually recycled through nature's interconnected cycles.";
+  const safeQuestions = (quizQuestions && quizQuestions.length > 0) ? quizQuestions : [
+    { id: 1, type: "mcq", question: "What powers the water cycle on Earth?", options: ["The Sun's thermal energy", "Earthquakes", "Moonlight", "Wind turbines"], answer: "The Sun's thermal energy" },
+    { id: 2, type: "tf", question: "True or False: Clouds are formed through the process of condensation.", options: ["True", "False"], answer: "True" },
+    { id: 3, type: "short", question: "Why is precipitation essential for life on land?", answer: "It replenishes fresh water in soil, lakes, and aquifers needed by plants and animals." }
+  ];
+
   const handlePrint = () => {
     window.print();
   };
@@ -110,15 +129,15 @@ export default function TeacherWorksheetModal({ storyData, topic, ageGroup, quiz
             marginBottom: '1.5rem',
             fontSize: '0.85rem'
           }}>
-            <strong>Curriculum Standards:</strong> NGSS Science Inquiry & CCSS ELA Reading Informational Text (Grade Level: {reading_level || `Age ${ageGroup}`}).
+            <strong>Curriculum Standards:</strong> NGSS Science Inquiry & CCSS ELA Reading Informational Text (Grade Level: {safeReadingLevel || `Age ${safeAgeGroup}`}).
             <br />
-            <strong>Objective:</strong> Learners demonstrate conceptual comprehension of {topic} through narrative analysis and textual evidence.
+            <strong>Objective:</strong> Learners demonstrate conceptual comprehension of {safeTopic} through narrative analysis and textual evidence.
           </div>
 
           {/* Story Reading Section */}
           <div style={{ marginBottom: '1.75rem' }}>
             <h3 style={{ fontSize: '1.25rem', fontWeight: 800, color: '#1e1b4b', marginBottom: '0.5rem' }}>
-              Part 1: Reading Passage — {title}
+              Part 1: Reading Passage — {safeTitle}
             </h3>
             <div style={{
               fontSize: '0.95rem',
@@ -128,12 +147,12 @@ export default function TeacherWorksheetModal({ storyData, topic, ageGroup, quiz
               border: '1px solid #e2e8f0',
               borderRadius: 'var(--radius-md)'
             }}>
-              {story}
+              {safeStory}
             </div>
           </div>
 
           {/* Vocabulary Fill-in */}
-          {vocabulary && vocabulary.length > 0 && (
+          {safeVocabulary && safeVocabulary.length > 0 && (
             <div style={{ marginBottom: '1.75rem' }}>
               <h3 style={{ fontSize: '1.15rem', fontWeight: 800, marginBottom: '0.5rem' }}>
                 Part 2: Key Vocabulary Match
@@ -142,7 +161,7 @@ export default function TeacherWorksheetModal({ storyData, topic, ageGroup, quiz
                 Match each word with its correct meaning based on the text:
               </p>
               <div style={{ display: 'grid', gap: '0.5rem' }}>
-                {vocabulary.map((v, i) => (
+                {safeVocabulary.map((v, i) => (
                   <div key={i} style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '0.9rem' }}>
                     <span style={{ fontWeight: 700, width: '130px', color: '#4338ca' }}>
                       {i + 1}. {v.word}
@@ -160,7 +179,7 @@ export default function TeacherWorksheetModal({ storyData, topic, ageGroup, quiz
               Part 3: Reading Comprehension Questions
             </h3>
             <div style={{ display: 'grid', gap: '1.25rem' }}>
-              {quizQuestions.map((q, idx) => (
+              {safeQuestions.map((q, idx) => (
                 <div key={q.id || idx} style={{ borderBottom: '1px dashed #cbd5e1', paddingBottom: '0.75rem' }}>
                   <div style={{ fontWeight: 700, fontSize: '0.95rem', marginBottom: '0.35rem' }}>
                     {idx + 1}. {q.question}

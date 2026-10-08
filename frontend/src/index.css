@@ -1351,3 +1351,23 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
+/* Segregated Sub-Navigation Bar */
+.subnav-container::-webkit-scrollbar {
+  height: 3px;
+}
+.subnav-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+.subnav-container::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+.subnav-container button {
+  transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.subnav-container button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.06);
+}
+
+

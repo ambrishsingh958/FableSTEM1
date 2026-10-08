@@ -19,6 +19,8 @@ import MagicWordLabModal from './components/MagicWordLabModal';
 import StoryTheaterModal from './components/StoryTheaterModal';
 import ComicStripModal from './components/ComicStripModal';
 import SuggestedResourcesModal from './components/SuggestedResourcesModal';
+import StreakModal from './components/StreakModal';
+import PresetsModal from './components/PresetsModal';
 import Footer from './components/Footer';
 
 import { getStory, getQuiz, evaluateQuiz } from './services/api';
@@ -70,6 +72,8 @@ export default function App() {
   const [showStoryTheater, setShowStoryTheater] = useState(false);
   const [showComicStrip, setShowComicStrip] = useState(false);
   const [showResourcesModal, setShowResourcesModal] = useState(false);
+  const [showStreakModal, setShowStreakModal] = useState(false);
+  const [showPresetsModal, setShowPresetsModal] = useState(false);
   const [history, setHistory] = useState([]);
 
   // Load history, user, & XP from localStorage on startup
@@ -244,6 +248,18 @@ export default function App() {
     setCurrentStep(STEP_STORY);
   };
 
+  const handleSelectPreset = (preset) => {
+    setCurrentTopic(preset.topic);
+    setCurrentAgeGroup(preset.age_group);
+    setCurrentLanguage(preset.language || "English");
+    handleCreateStory({
+      topic: preset.topic,
+      age_group: preset.age_group,
+      language: preset.language || "English",
+      length: "medium"
+    });
+  };
+
   // Stepper progress index
   const getStepProgressIndex = () => {
     if (currentStep === STEP_FORM || currentStep === STEP_LOADING_STORY) return 1;
@@ -271,6 +287,14 @@ export default function App() {
         onOpenAnalytics={() => setShowAnalyticsModal(true)}
         onOpenTrophies={() => setShowTrophiesModal(true)}
         onOpenResources={() => setShowResourcesModal(true)}
+        onOpenFlashcards={() => {
+          setSelectedWordForLab(storyData?.vocabulary?.[0] || null);
+          setShowMagicWordLab(true);
+        }}
+        onOpenTeacherMode={() => setShowTeacherMode(true)}
+        onOpenPresets={() => setShowPresetsModal(true)}
+        onOpenStreak={() => setShowStreakModal(true)}
+        activeTab={currentStep === STEP_FORM ? "studio" : "reader"}
       />
 
       <main className="app-container" id="main-content" style={{ flex: 1, paddingBottom: '3rem' }}>
@@ -498,6 +522,23 @@ export default function App() {
           ageGroup={currentAgeGroup}
           onClose={() => setShowResourcesModal(false)}
           onAddXp={addXp}
+        />
+      )}
+
+      {/* Streak Celebration Modal */}
+      {showStreakModal && (
+        <StreakModal 
+          streak={currentUser?.streak || 3}
+          onClose={() => setShowStreakModal(false)}
+          onAddXp={addXp}
+        />
+      )}
+
+      {/* Benchmark STEM Story Presets Modal */}
+      {showPresetsModal && (
+        <PresetsModal 
+          onSelectPreset={handleSelectPreset}
+          onClose={() => setShowPresetsModal(false)}
         />
       )}
 
