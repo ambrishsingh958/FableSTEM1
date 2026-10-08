@@ -1125,17 +1125,29 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1.45;
 }
 
-/* Certificate Styles */
-.certificate-modal-overlay {
+/* Certificate & Universal Modal Styles (Guaranteed higher than sticky navbar) */
+.certificate-modal-overlay,
+.modal-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(15, 23, 42, 0.75);
   backdrop-filter: blur(8px);
-  z-index: 99;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
+  overflow-y: auto;
+}
+
+.modal-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+  position: relative;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid #e2e8f0;
 }
 
 .certificate-card {

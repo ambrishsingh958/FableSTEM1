@@ -434,12 +434,12 @@ export default function App() {
       )}
 
       {/* Teacher & Classroom Worksheet Modal */}
-      {showTeacherMode && storyData && (
+      {showTeacherMode && (
         <TeacherWorksheetModal 
           storyData={storyData}
-          topic={currentTopic}
-          ageGroup={currentAgeGroup}
-          quizQuestions={quizData}
+          topic={currentTopic || "The Water Cycle"}
+          ageGroup={currentAgeGroup || "8-10"}
+          quizQuestions={quizData || []}
           onClose={() => setShowTeacherMode(false)}
         />
       )}
@@ -453,9 +453,9 @@ export default function App() {
       )}
 
       {/* User Profile Modal */}
-      {showProfileModal && currentUser && (
+      {showProfileModal && (
         <UserProfileModal 
-          user={currentUser}
+          user={currentUser || { name: "Explorer Davis", avatar: "🧑‍🚀", role: "student", grade_or_class: "Grade 3", streak: 3, xp: xp }}
           onLogout={handleLogout}
           onOpenTeacherMode={() => setShowTeacherMode(true)}
           onClose={() => setShowProfileModal(false)}
