@@ -1,22 +1,22 @@
 import React from 'react';
-import { 
-  BookOpen, Sparkles, History, Zap, Flame, Trophy, 
-  ShoppingBag, PlayCircle, Bookmark, Compass, Layers, 
+import {
+  BookOpen, Sparkles, History, Zap, Flame, Trophy,
+  ShoppingBag, PlayCircle, Bookmark, Compass, Layers,
   Brain, GraduationCap, BarChart3, User, LogIn, ChevronRight
 } from 'lucide-react';
 import { playClickSound, playOptionSelect } from '../services/soundEffects';
 
-export default function Navbar({ 
-  onOpenHistory, 
-  onReset, 
-  hasHistory, 
-  onOpenAgeLens, 
-  xp = 150, 
-  currentUser, 
-  onOpenAuth, 
-  onOpenProfile, 
-  onOpenAnalytics, 
-  onOpenTrophies, 
+export default function Navbar({
+  onOpenHistory,
+  onReset,
+  hasHistory,
+  onOpenAgeLens,
+  xp = 150,
+  currentUser,
+  onOpenAuth,
+  onOpenProfile,
+  onOpenAnalytics,
+  onOpenTrophies,
   onOpenResources,
   onOpenFlashcards,
   onOpenTeacherMode,
@@ -33,28 +33,33 @@ export default function Navbar({
       position: 'sticky',
       top: 0,
       zIndex: 100,
-      background: 'rgba(255, 255, 255, 0.95)',
-      backdropFilter: 'blur(12px)',
-      borderBottom: '1px solid #e2e8f0',
-      boxShadow: '0 2px 10px rgba(0, 0, 0, 0.03)'
+      width: '100%',
+      background: 'rgba(255, 255, 255, 0.98)',
+      backdropFilter: 'blur(16px)',
+      boxShadow: '0 2px 8px rgba(0, 0, 0, 0.04)'
     }}>
       {/* =========================================
           TIER 1: TOP MAIN HEADER
          ========================================= */}
-      <div className="app-container" style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        padding: '0.65rem 1rem',
-        borderBottom: '1px solid #f1f5f9'
+      <div style={{
+        borderBottom: '1px solid #f1f5f9',
+        width: '100%'
       }}>
+        <div className="app-container" style={{
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          flexWrap: 'wrap',
+          gap: '0.6rem',
+          padding: '0.6rem 1.25rem'
+        }}>
         {/* Brand */}
-        <div 
+        <div
           onClick={() => {
             playClickSound();
             onReset();
-          }} 
-          role="button" 
+          }}
+          role="button"
           tabIndex={0}
           style={{
             display: 'flex',
@@ -76,14 +81,14 @@ export default function Navbar({
             boxShadow: '0 3px 12px rgba(0, 0, 0, 0.15)',
             transition: 'transform 0.15s ease'
           }}>
-            <img 
-              src="/logo-horizontal.png" 
-              alt="fableSTEAM" 
+            <img
+              src="/logo-horizontal.png"
+              alt="fableSTEAM"
               style={{
                 height: '38px',
                 width: 'auto',
                 display: 'block'
-              }} 
+              }}
             />
           </div>
 
@@ -188,6 +193,7 @@ export default function Navbar({
             <span style={{ fontSize: '1.1rem' }}>{userAvatar}</span>
             <span>{userName}</span>
           </button>
+          </div>
         </div>
       </div>
 
@@ -196,17 +202,21 @@ export default function Navbar({
          ========================================= */}
       <div className="subnav-container" style={{
         background: '#ffffff',
-        overflowX: 'auto',
-        whiteSpace: 'nowrap',
-        WebkitOverflowScrolling: 'touch',
-        padding: '0.45rem 0'
+        borderBottom: '1px solid #e2e8f0',
+        width: '100%',
+        padding: '0.35rem 0'
       }}>
         <div className="app-container" style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '0.5rem',
-          minWidth: 'max-content'
+          overflowX: 'auto',
+          WebkitOverflowScrolling: 'touch'
         }}>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.45rem',
+            padding: '2px 0 4px',
+            minWidth: 'max-content'
+          }}>
           {/* 1. 📖 Story Studio */}
           <button
             type="button"
@@ -285,6 +295,83 @@ export default function Navbar({
             <Layers size={14} color="#6366f1" /> Age Lab
           </button>
 
+          {/* 4. 🧠 Flashcards */}
+          <button
+            type="button"
+            onClick={() => {
+              playClickSound();
+              if (onOpenFlashcards) onOpenFlashcards();
+            }}
+            style={{
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
+              color: '#334155',
+              borderRadius: '999px',
+              padding: '0.35rem 0.85rem',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+            title="Open 3D Flashcards & Phonics Syllables Lab"
+          >
+            <Brain size={14} color="#8b5cf6" /> Flashcards
+          </button>
+
+          {/* 5. 🏆 Passport & Badges */}
+          <button
+            type="button"
+            onClick={() => {
+              playClickSound();
+              if (onOpenTrophies) onOpenTrophies();
+            }}
+            style={{
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
+              color: '#334155',
+              borderRadius: '999px',
+              padding: '0.35rem 0.85rem',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+            title="View Hall of Fame Medals, Diplomas, and Badges"
+          >
+            <Trophy size={14} color="#d97706" /> Passport & Badges
+          </button>
+
+          {/* 6. 🎓 Educators */}
+          <button
+            type="button"
+            onClick={() => {
+              playClickSound();
+              if (onOpenTeacherMode) onOpenTeacherMode();
+            }}
+            style={{
+              background: '#f8fafc',
+              border: '1px solid #e2e8f0',
+              color: '#334155',
+              borderRadius: '999px',
+              padding: '0.35rem 0.85rem',
+              fontSize: '0.82rem',
+              fontWeight: 700,
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.35rem',
+              cursor: 'pointer',
+              transition: 'all 0.15s ease'
+            }}
+            title="Classroom worksheets with NGSS standards & answer keys"
+          >
+            <GraduationCap size={14} color="#059669" /> Educators
+          </button>
 
           {/* 7. 🔥 3d Streak (Amber Pill) */}
           <button
@@ -363,6 +450,7 @@ export default function Navbar({
           </button>
         </div>
       </div>
-    </header>
+    </div>
+  </header>
   );
 }
